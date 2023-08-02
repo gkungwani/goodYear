@@ -1,0 +1,7 @@
+name: 'my_simple_dbt_project'
+vars:
+  my_name: "No entry"
+
+models:
+  telecom_models:
+

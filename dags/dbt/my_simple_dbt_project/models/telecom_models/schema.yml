@@ -1,0 +1,25 @@
+models: # or seeds:
+  - name: Cleansed_revenue1
+    tests:
+      - dbt_expectations.expect_table_column_count_to_be_between:
+          min_value: 1
+          max_value: 3
+  - name: Cleansed_crm1
+    tests:
+      - dbt_expectations.expect_table_column_count_to_be_between:
+          min_value: 1
+          max_value: 6
+    columns:
+      - name: MSISDN
+        tests:
+          - dbt_expectations.expect_column_values_to_not_be_null:
+              row_condition: "MSISDN is not null" # (Optional)
+      - name: value_segment
+        tests:
+          - accepted_values:
+              values: [ "Tier_3" ]
+  - name: Cleansed_device1
+    tests:
+      - dbt_expectations.expect_table_column_count_to_be_between:
+          min_value: 1
+          max_value: 6
